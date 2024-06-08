@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 class BellTest:
     @staticmethod
     def simulate():
-        # Beispielhafte Implementierung
         import random
         return 'One' if random.random() > 0.5 else 'Zero'
 
@@ -16,16 +15,16 @@ def run_bell_test(repeats):
 
     for i in range(repeats):
         result = BellTest.simulate()
-        print(f"Run {i+1}: Simulation result -> {result}")  # Debug-Ausgabe des Simulationsergebnisses
+        print(f"Run {i+1}: Simulation result -> {result}")
         binary_result = 1 if result == 'One' else 0
-        print(f"Run {i+1}: Binary result -> {binary_result}")  # Debug-Ausgabe des binären Ergebnisses
+        print(f"Run {i+1}: Binary result -> {binary_result}")
         results.append(binary_result)
 
-    print("Alle Ergebnisse:", results)  # Ausgabe aller Ergebnisse zur Überprüfung
-    return results  # Rückgabe der Ergebnisse
+    print("Alle Ergebnisse:", results)
+    return results
 
 def analyze_results(results):
-    # Konvertiere die Liste in einen Tensor
+
     results_tensor = tf.convert_to_tensor(results, dtype=tf.int32)
     
     ones_count = tf.reduce_sum(results_tensor)
@@ -36,18 +35,16 @@ def analyze_results(results):
            f"Number of Ones: {ones_count.numpy()}\n"
            f"Number of Zeros: {zeros_count.numpy()}")
 
-    # Simple bar chart visualization using TensorFlow
     counts = tf.stack([zeros_count, ones_count])
     categories = ['Zero', 'One']
 
     return counts, categories
 
 if __name__ == "__main__":
-    repeats = 1000  # Number of times to repeat the Bell test
+    repeats = 1000
     results = run_bell_test(repeats)
     counts, categories = analyze_results(results)
 
-    # Plot the results using TensorFlow
     plt.bar(categories, counts.numpy(), color=['blue', 'orange'])
     plt.xlabel('Result')
     plt.ylabel('Count')
