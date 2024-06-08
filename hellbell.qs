@@ -1,15 +1,14 @@
 namespace Quantum.hellbell {
-  open Microsoft.Quantum.Canon;
-  open Microsoft.Quantum.Intrinsic;
-  open Microsoft.Quantum.Measurement;
+    open Microsoft.Quantum.Intrinsic;
+    open Microsoft.Quantum.Canon;
 
-  @EntryPoint()
-  operation BellTest() : Result {
-    use qubit = Qubit() {
-      H(qubit);
-      let result = M(qubit);
-      Reset(qubit);
-      return result;
+    @EntryPoint()
+    operation BellTest() : Result {
+        use q = Qubit();
+        H(q);  // Hadamard-Gatter erzeugt Superposition
+        let result = M(q);  // Messung des Qubits
+        Reset(q);  // Zurücksetzen des Qubits
+        return result;
     }
-  }
 }
+
