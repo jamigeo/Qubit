@@ -9,9 +9,9 @@ def run_bell_test(repeats):
     results = []
 
     for i in range(repeats):
-        result = BellTest.simulate()  # Q#-Operation aufrufen
+        result = BellTest.simulate()
         print(f"Run {i+1}: Simulation result -> {result}")
-        binary_result = 1 if result == Result.One else 0  # Result sollte `Result`-Typ sein
+        binary_result = 1 if result == Result.One else 0
         print(f"Run {i+1}: Binary result -> {binary_result}")
         results.append(binary_result)
 
